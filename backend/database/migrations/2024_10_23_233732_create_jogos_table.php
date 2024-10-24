@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rodada'); //fk
+            $table->boolean('status');
             $table->date('data_partida');
             $table->time('hora_partida');
             $table->string('local', 100);

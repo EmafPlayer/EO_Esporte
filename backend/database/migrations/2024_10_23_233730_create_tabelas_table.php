@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tabelas', function (Blueprint $table) {
             $table->id(); //pk e fk
+            $table->foreignId('clube');
             $table->integer('pontos');
             $table->integer('jogos');
             $table->integer('vitorias');
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->integer('saldo_gols');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('clubes');
+            $table->foreign('clube')->references('id')->on('clubes');
         });
     }
 

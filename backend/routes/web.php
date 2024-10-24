@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\JogoController;
+use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,5 +8,5 @@ Route::get('/', function () {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::get('/jogos', [JogoController::class, 'create']);
+    Route::get('/inicio', [InicioController::class, 'inicio']);
 });

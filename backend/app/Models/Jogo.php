@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jogo extends Model
 {
-
+    
     protected $fillable = [
         'rodada',
+        'status',
         'data_partida',
         'hora_partida',
         'local',
