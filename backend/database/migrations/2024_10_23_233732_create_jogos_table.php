@@ -15,10 +15,10 @@ return new class extends Migration
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rodada'); //fk
-            $table->boolean('status');
+            $table->boolean('status')->nullable();
             $table->date('data_partida');
-            $table->time('hora_partida');
-            $table->string('local', 100);
+            $table->time('hora_partida')->nullable();
+            $table->string('local', 100)->nullable();
             $table->foreignId('clube_casa'); //fk
             $table->foreignId('clube_fora'); //fk
             $table->integer('gols_clube_casa')->nullable();

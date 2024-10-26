@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Clube;
+use Illuminate\Support\Facades\DB;
 use App\Models\Tabela;
 use Illuminate\Http\Request;
 
@@ -14,11 +14,11 @@ class TabelaController extends Controller
      */
     public function create($clubes)
     {
-        
-        for($i = 0; $i < count($clubes); $i++){
+
+        foreach($clubes as $clube){
 
             Tabela::create([
-                "clube" => $clubes[$i]['id'],
+                "clube" => $clube['id'],
                 "pontos" => 0,
                 "jogos" => 0,
                 "vitorias" => 0,
@@ -38,7 +38,13 @@ class TabelaController extends Controller
      */
     public function show()
     {
-        
+        $tabela = DB::table('tabela_view')->get()->toArray();
+
+        if (count($tabela) == 0) {
+            return response()->json(['message' => 'Ainda não possui nenhum jogo na base de dados'], 404);
+        }
+
+        return response()->json(['message' => 'Tabela buscada com sucesso', 'tabela' => $tabela], 200);
     }
 
     /**
