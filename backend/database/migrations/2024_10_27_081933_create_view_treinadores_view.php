@@ -14,7 +14,7 @@ return new class extends Migration
         DB::unprepared('
             CREATE OR REPLACE VIEW treinadores_view AS
             SELECT treinadores.nome AS nome_treinador, pais_origem, clubes.nome AS nome_clube,
-                   clubes.sigla AS sigla_clube, escudo
+                   clubes.sigla AS sigla_clube, escudo, clubes.id AS id_clube
             FROM treinadores
             JOIN clubes
             ON treinadores.clube = clubes.id
