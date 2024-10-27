@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clube extends Model
+class Treinador extends Model
 {
-
     protected $fillable = [
-        'id',
+        'clube',
         'nome',
-        'sigla',
-        'escudo'
+        'pais_origem'
     ];
 
 }
