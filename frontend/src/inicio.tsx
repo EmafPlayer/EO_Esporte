@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavBar } from "./nav_bar";
 import buscarJogos from "./buscarJogos";
 
 export function Inicio() {
 
-  const [tabela, setTabela] = useState([]);
+  const [jogos, setJogos] = useState([]);
 
-  window.onload = async () => {
-    const data = await buscarJogos();
-    setTabela(data?.tabela);
-    console.log(tabela)
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+        const data = await buscarJogos();
+        console.log("Dados retornados de buscarJogos:", data);
+
+        if (data) {
+          setJogos(data?.jogos);
+        } else {
+          console.warn("Tabela não encontrada ou dados inválidos:");
+        }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="">

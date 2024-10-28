@@ -6,7 +6,7 @@ export function NavBar(){
         <nav className="h-[8rem] w-full flex justify-between px-12 items-center bg-[#06AA48] fixed z-10 border-b border-dashed">
             <div className='flex items-center gap-3'>
                 <img src={FotoCampo} alt="Foto Brasileirão" className="h-[50px] w-[50px]" />
-                <a href="/inicio" className='text-[24px] text-[#FFFFFF] font-medium'>EO Esportes</a>
+                <a href="/" className='text-[24px] text-[#FFFFFF] font-medium'>EO Esportes</a>
             </div>
             <div>
                 <h1 className="text-[#FFFFFF] pl-[10rem] font-light text-[42px] cursor-pointer">Brasileirão Série A</h1>

@@ -1,18 +1,21 @@
+import axios from 'axios';
+import { apiGlobo } from './api';
 
-import { api } from './api';
-
-const buscarTabela = async () => {
-
-  try {
-    const response = await api.get(`v1/inicio/tabela`)
-
-    if (response.status === 200) { //testa se o login foi validado como correto
-      return { tabela: response.data.tabela };
-    }
-  } catch(error){
-    return { message: 'Professor Inválido.' };
-  }
+const buscarJogos = async () => {
+  console.log(apiGlobo.defaults.baseURL); // Verifique se o baseURL está correto
   
+  try {
+
+    const response = await axios.get('https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-2024/rodada/1/jogos/');
+    console.log(response.data);
+    return { jogos: response.data };
+
+  } catch (error) {
+
+    console.error('Erro ao testar a API:', error);
+    return { message: 'Professor Inválido.' };
+    
+  }
 };
 
-export default buscarTabela;
+export default buscarJogos;
