@@ -1,14 +1,22 @@
+import { useState } from "react";
 import { NavBar } from "./nav_bar";
-import FotoBrasileirao from "../public/Green Frame Grid Football Team Presentation (1).svg"
+import buscarJogos from "./buscarJogos";
 
 export function Inicio() {
 
+  const [disciplinas, setJogos] = useState([]);
+
+  window.onload = async () => {
+    const data = await buscarJogos();
+    setJogos(data?.jogos);
+    console.log(disciplinas)
+  }
+
   return (
-    <div>
+    <div className="">
       <NavBar>
       </NavBar>
-      <body className="p-1 flex items-center justify-center w-full">
-          <img src={FotoBrasileirao} alt="Foto Brasileirão" className="h-[55rem] w-full" />
+      <body className="bg-[url('./Futebol.svg')] bg-cover bg-center h-screen w-full p-1 flex items-center justify-center z-0 translate-y-28">
       </body>
     </div>
 

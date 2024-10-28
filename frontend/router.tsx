@@ -6,6 +6,7 @@ export function Router() {
   return (
     <Routes>
       <Route path="/inicio" element={<Pages.Inicio/>} />
+      <Route path="/tabela" element={<Pages.Tabela/>} />
     </Routes>
   );
 }
