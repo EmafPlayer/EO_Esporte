@@ -4,12 +4,12 @@ import buscarJogos from "./buscarJogos";
 
 export function Inicio() {
 
-  const [disciplinas, setJogos] = useState([]);
+  const [tabela, setTabela] = useState([]);
 
   window.onload = async () => {
     const data = await buscarJogos();
-    setJogos(data?.jogos);
-    console.log(disciplinas)
+    setTabela(data?.tabela);
+    console.log(tabela)
   }
 
   return (
