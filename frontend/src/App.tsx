@@ -1,11 +1,13 @@
-export function App() {
+import { Router } from "../router";
+import { BrowserRouter } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
+function App() {
   return (
-    <>
-      <p className="">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  );
 }
 
+export default App;
