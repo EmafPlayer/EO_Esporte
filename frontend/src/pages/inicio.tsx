@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavBar } from "./nav_bar";
-import buscarJogos from "./buscarJogos";
+import { NavBar } from "../componentes/nav_bar";
+import buscarJogosGe from "../apis/buscarJogosGE";
 
 export function Inicio() {
 
@@ -8,7 +8,7 @@ export function Inicio() {
 
   useEffect(() => {
     const fetchData = async () => {
-        const data = await buscarJogos();
+        const data = await buscarJogosGe();
         console.log("Dados retornados de buscarJogos:", data);
 
         if (data) {

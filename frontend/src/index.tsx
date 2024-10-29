@@ -1,7 +1,9 @@
-import { Inicio } from "./inicio";
-import { Tabela } from "./tabela";
+import { Inicio } from "./pages/inicio";
+import { Jogos } from "./pages/jogos";
+import { Tabela } from "./pages/tabela";
 
 export const Pages = {
   Inicio,
-  Tabela
+  Tabela,
+  Jogos
 };

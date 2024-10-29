@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { apiGlobo } from './api';
 
-const buscarJogos = async () => {
+const buscarJogosGe = async () => {
   console.log(apiGlobo.defaults.baseURL); // Verifique se o baseURL está correto
   
   try {
@@ -18,4 +18,4 @@ const buscarJogos = async () => {
   }
 };
 
-export default buscarJogos;
+export default buscarJogosGe;
