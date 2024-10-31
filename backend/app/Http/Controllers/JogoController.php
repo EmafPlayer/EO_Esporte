@@ -50,9 +50,8 @@ class JogoController extends Controller
     {  
         $qtd_rodadas = count(DB::table('jogos_view')->groupBy('rodada')->get()->toArray());
 
-        for($i = 0; $i < $qtd_rodadas; $i++){
+        for($i = 0; $i < $qtd_rodadas; $i++)
             $jogos[$i] = DB::table('jogos_view')->where('rodada', $i+1)->get()->toArray();
-        }
 
         if ($qtd_rodadas == 0) {
             return response()->json(['message' => 'Ainda não possui nenhum jogo na base de dados'], 404);

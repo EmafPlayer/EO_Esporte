@@ -11,7 +11,7 @@ export function Jogos () {
     const [jogos, setJogos] = useState([]);
     const [contador, setContador] = useState(1);
 
-    const formatarDataHora = (data, hora) => {
+    const formatarDataHora = (data) => {
         const dataFormatada = format(parse(data, 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy - EEEE', { locale: ptBR });
         
         const diaDaSemanaFormatado = dataFormatada
@@ -55,7 +55,7 @@ export function Jogos () {
 
     return (
         <div className="bg-slate-100">
-            <NavBar />
+            <NavBar typePage={1} />
             <main className="w-full pt-6 translate-y-[138px] bg-slate-100 pb-[4.7rem]">
                 <div className="w-full px-20 flex items-center justify-between">
                     <button onClick={lastPage}><FaArrowLeft className="text-[50px]" /></button>
@@ -81,7 +81,7 @@ export function Jogos () {
                                 </div>
                             </div>
                             <div>
-                                <p className="text-center text-[14px]">{formatarDataHora(jogo.data_partida, jogo.hora_partida)}</p>
+                                <p className="text-center text-[14px]">{formatarDataHora(jogo.data_partida)}</p>
                             </div>
                         </div>
                     )}

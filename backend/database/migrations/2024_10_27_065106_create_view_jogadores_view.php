@@ -13,7 +13,7 @@ return new class extends Migration
     {
         DB::unprepared('
             CREATE OR REPLACE VIEW jogadores_view AS
-            SELECT jogadores.clube AS id_clube,jogadores.nome AS nome_jogador, 
+            SELECT jogadores.clube AS id_clube,jogadores.nome AS nome_jogador, jogadores.posicao AS id_posicao,
                    numero, clubes.nome AS nome_clube, jogadores.nacionalidade, clubes.sigla AS sigla_clube, 
                    posicoes.descricao AS posicao, posicoes.sigla AS sigla_posicao, clubes.escudo
             FROM jogadores

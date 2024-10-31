@@ -13,7 +13,7 @@ const buscarJogosGe = async () => {
   } catch (error) {
 
     console.error('Erro ao testar a API:', error);
-    return { message: 'Professor Inválido.' };
+    return { message: 'jogos Inválido.' };
     
   }
 };

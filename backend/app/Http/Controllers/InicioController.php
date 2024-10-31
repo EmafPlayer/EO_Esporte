@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class InicioController extends Controller
 {
-    public function inicio($jogos, $jogadores) {
+    public function inicio($jogos) {
 
         if((Clube::count() == 0) && (Jogo::count() == 0) && (Tabela::count() == 0)){
 
@@ -27,12 +27,6 @@ class InicioController extends Controller
             
             $ClubeController = new ClubeController();
             $ClubeController->create($jogos[0]);
-
-            $TreinadorSeeder = new TreinadorSeeder();
-            $TreinadorSeeder->run();
-
-            $JogadoresController = new JogadoresController();
-            $JogadoresController->create($jogadores);
             
             $clubes_id = Clube::select(['id'])->get()->toArray();
             $TabelaController = new TabelaController();

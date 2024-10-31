@@ -24,7 +24,7 @@ export function Tabela(){
     
     return(
         <div className=" bg-slate-100">
-            <NavBar>
+            <NavBar typePage={2}>
             </NavBar>
             <main className="w-full translate-y-[138px] pb-28  bg-slate-100">
                 <h1 className="pl-[235px] pt-16 font-medium text-[30px] pb-8">TABELA</h1>

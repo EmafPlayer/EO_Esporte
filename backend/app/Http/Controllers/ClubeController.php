@@ -33,9 +33,14 @@ class ClubeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Clube $clube)
+    public function show()
     {
-        //
+        $clubes = Clube::select('id','nome','sigla','escudo')->orderBy('id','asc')->get()->toArray();
+        
+        if(count($clubes) == 0)
+            return response()->json(['message' => 'Ainda não possui clubes criados na base de dados'], 404);
+
+        return response()->json(['message' => 'Clubes buscados com sucesso', 'clubes' => $clubes], 200);
     }
 
     /**

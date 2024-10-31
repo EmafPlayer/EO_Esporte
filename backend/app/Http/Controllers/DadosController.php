@@ -977,6 +977,13 @@ class DadosController extends Controller
                 ]
             ];
 
+        //dd(count($jogadores[0]['players']));
+
+        $InicioController = new InicioController();
+        $InicioController->inicio($jogos);
+    }
+
+    public function startElenco(){
         $jogadores = [
             [
                 "players" => [
@@ -4574,9 +4581,7 @@ class DadosController extends Controller
             ]
         ];
 
-        //dd(count($jogadores[0]['players']));
-
-        $InicioController = new InicioController();
-        $InicioController->inicio($jogos, $jogadores);
+        $ElencoController = new ElencoController();
+        $ElencoController->create($jogadores);
     }
 }
