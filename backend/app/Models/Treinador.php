@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Treinador extends Model
 {
+    protected $table = 'treinadores';
+
     protected $fillable = [
         'clube',
         'nome',

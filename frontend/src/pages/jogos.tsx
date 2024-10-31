@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavBar } from "../componentes/nav_bar";
 import buscarJogos from "../apis/buscarJogos";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { BsChevronLeft, BsChevronRight, BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
 import { format, parse } from "date-fns";
 import { ptBR } from 'date-fns/locale';
 
@@ -22,6 +22,20 @@ export function Jogos () {
 
         return `${diaDaSemanaFormatado}`;
     };
+
+    function nextPage2 () {
+        if(contador < 32)
+            setContador(contador + 5);
+        else
+            setContador(37);
+    }
+
+    function lastPage2 () {
+        if(contador > 4)
+            setContador(contador - 5);
+        else
+            setContador(0);
+    }
 
     function nextPage () {
         if (contador < jogos.length - 1)
@@ -56,13 +70,20 @@ export function Jogos () {
     return (
         <div className="bg-slate-100">
             <NavBar typePage={1} />
-            <main className="w-full pt-6 translate-y-[138px] bg-slate-100 pb-[4.7rem]">
-                <div className="w-full px-20 flex items-center justify-between">
-                    <button onClick={lastPage}><FaArrowLeft className="text-[50px]" /></button>
-                    <p className="text-[30px]">{contador + 1}ª Rodada</p>
-                    <button onClick={nextPage}><FaArrowRight className="text-[50px]" /></button>
+            <main className="w-full pt-12 translate-y-[138px] bg-slate-100 pb-[4.7rem]">
+                <div className="w-full px-12 flex items-center justify-between">
+                    <div>
+                        <button className="mr-8" onClick={lastPage2}><BsChevronDoubleLeft className="text-[50px]" /></button>
+                        <button onClick={lastPage}><BsChevronLeft className="text-[50px]" /></button>
+                    </div>
+                        <p className="text-[30px]">{contador + 1}ª Rodada</p>
+                    <div>
+                        <button onClick={nextPage}><BsChevronRight className="text-[50px]" /></button>
+                        <button className="ml-8" onClick={nextPage2}><BsChevronDoubleRight className="text-[50px]" /></button>
+                    </div>
+
                 </div>
-                <div className="mt-14 grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-10 gap-4">
+                <div className="pt-14 grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-10 gap-4">
                     {jogos[contador].map((jogo, index) => 
                        <div className="bg-[#ffffff] shadow-md border-2 border-[#a1a1a1d3] px-2 rounded-md h-48  col-span-1 "> 
                             <div key={index} className="justify-between flex items-center h-[85%]">

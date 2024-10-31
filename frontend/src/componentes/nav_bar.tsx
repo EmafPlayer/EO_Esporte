@@ -1,5 +1,5 @@
 import { Link } from './nav_link';
-import FotoCampo from "../../public/football-pitch-icon-51e7b6.webp"
+import FotoBola from "../../public/Bola.png"
 import { useState } from 'react';
 
 export function NavBar( typePage ){
@@ -17,9 +17,9 @@ export function NavBar( typePage ){
     
 
     return(
-        <nav className="h-[8rem] w-full flex justify-between px-12 items-center bg-[#759EF0] bg-gradient-to-r from-[#759EF0] to-[##48B6F0] fixed z-10 border-b border-dashed">
-            <div className='pl-[4rem] flex items-center gap-3'>
-                <img src={FotoCampo} alt="Foto Brasileirão" className="h-[50px] w-[50px]" />
+        <nav className="h-[8rem] w-full flex justify-between px-12 items-center bg-[#2e9fd7] bg-gradient-to-r from-[#2e9fd7] to-[#759EF0] fixed z-10 border-b">
+            <div className='pl-[1rem] flex items-center gap-3'>
+                <img src={FotoBola} alt="Foto Brasileirão" className="h-[70px] w-[70px]" />
                 <a href="/" className='text-[24px] text-[#FFFFFF] font-medium'>EO Esportes</a>
             </div>
             <div>

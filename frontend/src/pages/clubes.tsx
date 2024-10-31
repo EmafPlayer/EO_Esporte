@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react";
 import { NavBar } from "../componentes/nav_bar";
+import { api } from "../apis/api";
 import buscarClubes from "../apis/buscarClubes";
 
 
 export function Clubes () {
-    
-    const [clubes, setClubes] = useState([]);
+
+    const [clubes, setClubes] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await buscarClubes()
-            console.log("Dados retornados de buscarClubes:", data);
+          await api.get('/v1/inicio/elenco');
+        };
+        fetchData();
+      }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await buscarClubes();
+            console.log("Dados retornados de buscarTabela:", data);
+    
             if (data?.clubes) {
                 setClubes(data.clubes);
             } else {
                 console.warn("Tabela não encontrada ou dados inválidos:");
             }
-        }
+        };
+    
         fetchData();
     }, []);
 
