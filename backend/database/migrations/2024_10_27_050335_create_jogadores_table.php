@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('jogadores', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 50);
-            $table->integer('numero');
-            $table->foreignId('posicao');
+            $table->integer('numero')->nullable();
+            $table->foreignId('posicao')->nullable();
             $table->foreignId('clube');
-            $table->string('nacionalidade');
+            $table->string('nacionalidade')->nullable();
             $table->timestamps();
 
             $table->foreign('posicao')->references('id')->on('posicoes');

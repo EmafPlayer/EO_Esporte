@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClubeController;
 use App\Http\Controllers\DadosController;
+use App\Http\Controllers\ElencoController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\JogadoresController;
 use App\Http\Controllers\JogoController;
@@ -14,9 +16,15 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('v1')->group(function () {
-    Route::get('/inicio', [DadosController::class, 'start']);
-    Route::get('/inicio/tabela', [TabelaController::class, 'show']);
-    Route::get('/inicio/jogadores/{id_clube}', [JogadoresController::class, 'show']);
-    Route::get('/inicio/treinador/{id_clube}', [TreinadoresController::class, 'show']);
-    Route::get('/inicio/jogos', [JogoController::class, 'show']);
+
+    Route::prefix('inicio')->group(function () {
+        Route::get('/', [DadosController::class, 'start']);
+        Route::get('/elenco', [DadosController::class, 'startElenco']);
+        Route::get('/tabela', [TabelaController::class, 'show']);
+        Route::get('/jogadores/{id_clube}', [JogadoresController::class, 'show']);
+        Route::get('/treinadores/{id_clube}', [TreinadoresController::class, 'show']);
+        Route::get('/jogos', [JogoController::class, 'show']);
+        Route::get('/clubes', [ClubeController::class, 'show']);
+    });
+    
 });

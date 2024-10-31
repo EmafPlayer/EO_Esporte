@@ -13,13 +13,13 @@ return new class extends Migration
     {
         DB::unprepared('
             CREATE OR REPLACE VIEW tabela_view AS
-            SELECT tabelas.pontos, tabelas.jogos, tabelas.vitorias, tabelas.empates, tabelas.id,
-                   tabelas.derrotas, tabelas.gols_pros, tabelas.gols_contras, tabelas.saldo_gols,
-                   clubes.nome, clubes.sigla, clubes.escudo
+            SELECT tabelas.pontos, tabelas.jogos, tabelas.vitorias, tabelas.empates, 
+                    tabelas.derrotas, tabelas.gols_pros, tabelas.gols_contras, tabelas.saldo_gols,
+                    clubes.nome, clubes.sigla, clubes.escudo
             FROM tabelas
             JOIN clubes
             ON tabelas.clube = clubes.id
-            ORDER BY pontos DESC, saldo_gols DESC, gols_pros DESC;
+            ORDER BY pontos DESC, vitorias DESC, saldo_gols DESC, gols_pros DESC;
         ');
 
     }

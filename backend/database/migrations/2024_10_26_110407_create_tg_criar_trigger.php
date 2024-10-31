@@ -13,69 +13,73 @@ return new class extends Migration
     {
         DB::unprepared('
             CREATE TRIGGER tg_criar_tabela
-	            AFTER
-	            INSERT
+                AFTER
+                INSERT
             ON jogos
             FOR EACH ROW
             BEGIN
 
-            IF NEW.gols_clube_casa > NEW.gols_clube_fora then
+                IF NEW.status = 1 then 
+                
+                    IF NEW.gols_clube_casa > NEW.gols_clube_fora then
+                            
+                        UPDATE tabelas
+                        SET tabelas.pontos = tabelas.pontos + 3, tabelas.jogos = tabelas.jogos + 1, 
+                            tabelas.vitorias = tabelas.vitorias + 1,
+                            tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_casa, 
+                            tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_fora,
+                            tabelas.saldo_gols = (tabelas.gols_pros - tabelas.gols_contras)
+                        WHERE tabelas.clube = NEW.clube_casa;
+                        
+                        UPDATE tabelas
+                        SET tabelas.jogos = tabelas.jogos + 1, 
+                            tabelas.derrotas = tabelas.derrotas + 1,
+                            tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_fora, 
+                            tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_casa,
+                            tabelas.saldo_gols = (tabelas.gols_pros - tabelas.gols_contras)
+                        WHERE tabelas.clube = NEW.clube_fora;	
+                            
+                    ELSEIF NEW.gols_clube_casa < NEW.gols_clube_fora then
                     
-                UPDATE tabelas
-                SET tabelas.pontos = tabelas.pontos + 3, tabelas.jogos = tabelas.jogos + 1, 
-                    tabelas.vitorias = tabelas.vitorias + 1,
-                    tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_casa, 
-                    tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_fora,
-                    tabelas.saldo_gols = tabelas.saldo_gols + (tabelas.gols_pros - tabelas.gols_contras)
-                WHERE tabelas.clube = NEW.clube_casa;
-                
-                UPDATE tabelas
-                SET tabelas.jogos = tabelas.jogos + 1, 
-                    tabelas.derrotas = tabelas.derrotas + 1,
-                    tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_fora, 
-                    tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_casa,
-                    tabelas.saldo_gols = tabelas.saldo_gols + (tabelas.gols_pros - tabelas.gols_contras)
-                WHERE tabelas.clube = NEW.clube_fora;	
+                        UPDATE tabelas
+                        SET tabelas.pontos = tabelas.pontos + 3, tabelas.jogos = tabelas.jogos + 1, 
+                            tabelas.vitorias = tabelas.vitorias + 1,
+                            tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_fora, 
+                            tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_casa,
+                            tabelas.saldo_gols = (tabelas.gols_pros - tabelas.gols_contras)
+                        WHERE tabelas.clube = NEW.clube_fora;
+                        
+                        UPDATE tabelas
+                        SET tabelas.jogos = tabelas.jogos + 1, 
+                            tabelas.derrotas = tabelas.derrotas + 1,
+                            tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_casa, 
+                            tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_fora,
+                            tabelas.saldo_gols = (tabelas.gols_pros - tabelas.gols_contras)
+                        WHERE tabelas.clube = NEW.clube_casa;
                     
-            ELSEIF NEW.gols_clube_casa < NEW.gols_clube_fora then
-            
-                UPDATE tabelas
-                SET tabelas.pontos = tabelas.pontos + 3, tabelas.jogos = tabelas.jogos + 1, 
-                    tabelas.vitorias = tabelas.vitorias + 1,
-                    tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_fora, 
-                    tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_casa,
-                    tabelas.saldo_gols = tabelas.saldo_gols + (tabelas.gols_pros - tabelas.gols_contras)
-                WHERE tabelas.clube = NEW.clube_fora;
+                    ELSE 
+                        
+                        UPDATE tabelas
+                        SET tabelas.pontos = tabelas.pontos + 1, tabelas.jogos = tabelas.jogos + 1, 
+                            tabelas.empates = tabelas.empates + 1,
+                            tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_casa, 
+                            tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_fora,
+                            tabelas.saldo_gols = (tabelas.gols_pros - tabelas.gols_contras)
+                        WHERE tabelas.clube = NEW.clube_fora;
+                        
+                        UPDATE tabelas
+                        SET tabelas.pontos = tabelas.pontos + 1, tabelas.jogos = tabelas.jogos + 1, 
+                            tabelas.empates = tabelas.empates + 1,
+                            tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_fora, 
+                            tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_casa,
+                            tabelas.saldo_gols = (tabelas.gols_pros - tabelas.gols_contras)
+                        WHERE tabelas.clube = NEW.clube_casa;
+                        
+                    END IF;
                 
-                UPDATE tabelas
-                SET tabelas.jogos = tabelas.jogos + 1, 
-                    tabelas.derrotas = tabelas.derrotas + 1,
-                    tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_casa, 
-                    tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_fora,
-                    tabelas.saldo_gols = tabelas.saldo_gols + (tabelas.gols_pros - tabelas.gols_contras)
-                WHERE tabelas.clube = NEW.clube_casa;
-            
-            ELSE 
+                END IF;
                 
-                UPDATE tabelas
-                SET tabelas.pontos = tabelas.pontos + 1, tabelas.jogos = tabelas.jogos + 1, 
-                    tabelas.empates = tabelas.empates + 1,
-                    tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_casa, 
-                    tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_fora,
-                    tabelas.saldo_gols = tabelas.saldo_gols + (tabelas.gols_pros - tabelas.gols_contras)
-                WHERE tabelas.clube = NEW.clube_fora;
-                
-                UPDATE tabelas
-                SET tabelas.pontos = tabelas.pontos + 1, tabelas.jogos = tabelas.jogos + 1, 
-                    tabelas.empates = tabelas.empates + 1,
-                    tabelas.gols_pros = tabelas.gols_pros + NEW.gols_clube_fora, 
-                    tabelas.gols_contras = tabelas.gols_contras + NEW.gols_clube_casa,
-                    tabelas.saldo_gols = tabelas.saldo_gols + (tabelas.gols_pros - tabelas.gols_contras)
-                WHERE tabelas.clube = NEW.clube_casa;
-                
-            END IF;
-            
-        END
+            END
         ');
     }
 
