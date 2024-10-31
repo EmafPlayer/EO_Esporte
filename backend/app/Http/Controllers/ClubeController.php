@@ -16,16 +16,16 @@ class ClubeController extends Controller
     {
         for($i = 0; $i < count($jogos); $i++){
             Clube::create([
-                "id" => $jogos[$i]['equipes']['mandante']['id'],
-                "nome" => $jogos[$i]['equipes']['mandante']['nome_popular'],
-                "sigla" => $jogos[$i]['equipes']['mandante']['sigla'],
-                "escudo" => $jogos[$i]['equipes']['mandante']['escudo']
+                "id" => $jogos[$i]->equipes->mandante->id,
+                "nome" => $jogos[$i]->equipes->mandante->nome_popular,
+                "sigla" => $jogos[$i]->equipes->mandante->sigla,
+                "escudo" => $jogos[$i]->equipes->mandante->escudo
             ]);
             Clube::create([
-                "id" => $jogos[$i]['equipes']['visitante']['id'],
-                "nome" => $jogos[$i]['equipes']['visitante']['nome_popular'],
-                "sigla" => $jogos[$i]['equipes']['visitante']['sigla'],
-                "escudo" => $jogos[$i]['equipes']['visitante']['escudo']
+                "id" => $jogos[$i]->equipes->visitante->id,
+                "nome" => $jogos[$i]->equipes->visitante->nome_popular,
+                "sigla" => $jogos[$i]->equipes->visitante->sigla,
+                "escudo" => $jogos[$i]->equipes->visitante->escudo
             ]);
         }
     }

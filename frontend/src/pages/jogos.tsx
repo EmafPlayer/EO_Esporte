@@ -9,7 +9,7 @@ import { ptBR } from 'date-fns/locale';
 export function Jogos () {
     
     const [jogos, setJogos] = useState([]);
-    const [contador, setContador] = useState(1);
+    const [contador, setContador] = useState(0);
 
     const formatarDataHora = (data) => {
         const dataFormatada = format(parse(data, 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy - EEEE', { locale: ptBR });
