@@ -26,10 +26,12 @@ export function Tabela(){
         <div className=" bg-slate-100">
             <NavBar typePage={2}>
             </NavBar>
-            <main className="w-full translate-y-[138px] pb-28  bg-slate-100">
-                <h1 className="pl-[235px] pt-16 font-medium text-[30px] pb-8">TABELA</h1>
-                <div className="flex justify-center items-center">
-                    <table className="border-[0.2px] z-0 border-solid border-[#414040] rounded-md shadow-md table-auto divide-y divide-[#000000] w-[75%]">
+            <main className="w-full translate-y-[138px] pb-28 bg-slate-100">
+                <div className="flex justify-center">
+                    <h1 className="pt-14 font-medium text-[30px] pb-10">TABELA</h1>
+                </div>
+                <div className="flex justify-center pl-32 w-full">
+                    <table className="border-[0.2px] z-0 border-solid border-[#414040] rounded-md shadow-md table-auto divide-y divide-[#000000] w-[83%]">
                         <thead className="w-full">
                             <tr>
                                 <th className="py-1 font-extrabold text-[14px] text-[#fefefe] bg-[#555a57be] w-[15%] border-[2px] border-solid border-[#414040]">Classificação</th>
@@ -55,7 +57,7 @@ export function Tabela(){
                                             <img src={linha.escudo} alt="logo time" width='20px'/>
                                         </div>
                                         <div className="w-[80%]">
-                                            <p className="text-left text-[12px]">{linha.nome}</p>
+                                            <p className="text-left text-[14px]">{linha.nome}</p>
                                         </div>
                                     </td>
                                     <td className="text-[14px] font-medium bg-slate-200 text-center border-x-[0.4px] border-solid border-[#b9b8b8]">{linha.pontos}</td>
@@ -71,6 +73,24 @@ export function Tabela(){
                             )}
                         </tbody>
                     </table>
+                    <ul className="pl-6 pb-2 gap-11 pt-9">
+                        <li className="flex items-center justify-start gap-2">
+                            <div className="bg-[#06AA48] h-2 w-2"></div>
+                            <p className="text-[15px] font-serif">libertadores</p>
+                        </li>
+                        <li className="flex items-center justify-start gap-2">
+                            <div className="bg-[#3086DB] h-2 w-2"></div>
+                            <p className="text-[15px] font-serif">pré-libertadores</p>
+                        </li>
+                        <li className="flex items-center justify-start gap-2">
+                            <div className="bg-[#998CDB] h-2 w-2"></div>
+                            <p className="text-[15px] font-serif">sul-americana</p>
+                        </li>
+                        <li className="flex items-center justify-start gap-2">
+                            <div className="bg-[#E00E00] h-2 w-2"></div>
+                            <p className="text-[15px] font-serif">rebaixados</p>
+                        </li>
+                    </ul>
                 </div>
             </main>
         </div>

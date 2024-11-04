@@ -70,7 +70,7 @@ export function Jogos () {
     return (
         <div className="bg-slate-100">
             <NavBar typePage={1} />
-            <main className="w-full pt-12 translate-y-[138px] bg-slate-100 pb-[4.7rem]">
+            <main className="w-full pt-12 translate-y-[138px] bg-slate-100 pb-[2.9rem]">
                 <div className="w-full px-12 flex items-center justify-between">
                     <div>
                         <button className="mr-8" onClick={lastPage2}><BsChevronDoubleLeft className="text-[50px]" /></button>

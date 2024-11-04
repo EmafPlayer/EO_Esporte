@@ -78,9 +78,9 @@ class JogoController extends Controller
                 if( ($jogos[$i][$j]->jogo_ja_comecou == true) && ($status_jogo == 0) ){
                     Jogo::where('rodada', $i+1)->where('clube_casa', $clube_casa)->where('clube_fora', $clube_fora)->
                     update([
-                        "status" => 1,
+                        "status" => true,
                         "hora_partida" => $jogos[$i][$j]->hora_realizacao,
-                        "local" => $jogos[$i][$j]->sede,
+                        "local" => $jogos[$i][$j]->sede->nome_popular,
                         "gols_clube_casa" => $jogos[$i][$j]->placar_oficial_mandante,
                         "gols_clube_fora" => $jogos[$i][$j]->placar_oficial_visitante
                     ]);
