@@ -14,7 +14,7 @@ class JogadoresController extends Controller
      */
     public function create($jogadores)
     {
-
+        // Armazenará os dados dos jogadores retornados pela api ao seu respectivo time
         for($i = 0; $i < count($jogadores); $i++){  //Clubes
             
             for($j = 0; $j < count($jogadores[$i]->players); $j++){ //Integrantes
@@ -97,6 +97,7 @@ class JogadoresController extends Controller
         if (count($jogadores) == 0)
             return response()->json(['message' => 'Ainda não possui jogadores para esse time na base de dados'], 404);
 
+        // Retornará os dados dos jogadores de um clube em especifico para a api
         return response()->json(['message' => 'Jogadores buscados com sucesso', 'jogadores' => $jogadores], 200);
         
     }

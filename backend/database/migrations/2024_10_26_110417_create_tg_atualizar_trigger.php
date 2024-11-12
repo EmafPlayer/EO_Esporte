@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Trigger que atualizará os dados da tabela a cada jogo inserido no banco de dados
         DB::unprepared('
             CREATE TRIGGER tg_atualizar_tabela
                 AFTER

@@ -8,13 +8,15 @@ export function Clubes () {
 
     const [clubes, setClubes] = useState([])
 
+    // Fará uma requisição que armazerá os dados do elenco de todos os time no banco de dados
     useEffect(() => {
         const fetchData = async () => {
           await api.get('/v1/inicio/elenco');
         };
         fetchData();
-      }, []);
+    }, []);
 
+    // Fará a requisição dos dados de todos os clubes armazenados no banco de dados
     useEffect(() => {
         const fetchData = async () => {
             const data = await buscarClubes();

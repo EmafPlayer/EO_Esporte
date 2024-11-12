@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavBar } from "../componentes/nav_bar";
 import { api } from "../apis/api";
 
 export function Inicio() {
 
+  // Fará uma requisição que armazerá a maioria dos dados no banco de dados
   useEffect(() => {
     const fetchData = async () => {
       await api.get('/v1/inicio');
