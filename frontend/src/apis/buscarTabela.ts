@@ -12,7 +12,7 @@ const buscarTabela = async () => {
     }
   } catch (error) {
     console.error(error);
-    return { message: 'Jogador Inválido.' };
+    return { message: 'Erro ao fazer a requisição' };
   }
 };
 

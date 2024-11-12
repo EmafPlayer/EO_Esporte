@@ -14,6 +14,7 @@ class ClubeController extends Controller
      */
     public function create($jogos)
     {
+        // Vai inserir os dados de todos os clubes do campeonato no banco de dados
         for($i = 0; $i < count($jogos); $i++){
             Clube::create([
                 "id" => $jogos[$i]->equipes->mandante->id,
@@ -35,11 +36,12 @@ class ClubeController extends Controller
      */
     public function show()
     {
-        $clubes = Clube::select('id','nome','sigla','escudo')->orderBy('id','asc')->get()->toArray();
+        $clubes = Clube::select('id','nome','sigla','escudo')->orderBy('nome','asc')->get()->toArray();
         
         if(count($clubes) == 0)
             return response()->json(['message' => 'Ainda não possui clubes criados na base de dados'], 404);
 
+        // Retornará os dados de todos os clubes para a api
         return response()->json(['message' => 'Clubes buscados com sucesso', 'clubes' => $clubes], 200);
     }
 

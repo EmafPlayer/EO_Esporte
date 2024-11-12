@@ -11,7 +11,7 @@ const buscarJogadores = async ( id_clube: number ) => {
     }
   } catch (error) {
     console.error(error);
-    return { message: 'Jogador Inválido.' };
+    return { message: 'Erro ao fazer a requisição' };
   }
 };
 

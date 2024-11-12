@@ -16,6 +16,7 @@ class JogoController extends Controller
     public function create($jogos)
     {
 
+        // Armazenará os dados dos jogos, adquiridos pela api, no banco de dados 
         for($i = 0; $i < count($jogos); $i++){
 
             for($j = 0; $j < count($jogos[0]); $j++){
@@ -57,6 +58,7 @@ class JogoController extends Controller
             return response()->json(['message' => 'Ainda não possui nenhum jogo na base de dados'], 404);
         }
 
+        // Retornará os dados dos jogos para a api
         return response()->json(['message' => 'Jogos buscados com sucesso', 'jogos' => $jogos], 200);
     }
     
@@ -66,6 +68,7 @@ class JogoController extends Controller
      */
     public function update($jogos)
     {
+        // Atualizará os dados dos jogos que aconteceram dps da primeira interação com o programa
         for($i = 0; $i < count($jogos); $i++){  //Rodada
 
             for($j = 0; $j < count($jogos[0]); $j++){ //Jogos da Rodada
@@ -75,7 +78,7 @@ class JogoController extends Controller
 
                 $status_jogo = Jogo::where('rodada', $i+1)->where('clube_casa', $clube_casa)->where('clube_fora', $clube_fora)->value('status');
 
-                if( ($jogos[$i][$j]->jogo_ja_comecou == true) && ($status_jogo == 0) ){
+                if( ($jogos[$i][$j]->jogo_ja_comecou == true) && ($status_jogo == 0) ){ // É o caso do jogo ter acontecido, mas ainda não foi armazenado no banco de dados
                     Jogo::where('rodada', $i+1)->where('clube_casa', $clube_casa)->where('clube_fora', $clube_fora)->
                     update([
                         "status" => true,

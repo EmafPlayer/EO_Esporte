@@ -7,6 +7,7 @@ export function Tabela(){
     
     const [tabela, setTabela] = useState([]);
 
+    // Fará a requisição dos dados da tabela de pontuações armazenados no banco de dados
     useEffect(() => {
         const fetchData = async () => {
             const data = await buscarTabela();

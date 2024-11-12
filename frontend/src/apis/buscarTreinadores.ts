@@ -11,7 +11,7 @@ const buscarTreinadores = async ( id_clube: number ) => {
     }
   } catch (error) {
     console.error(error);
-    return { message: 'Treinador Inválido.' };
+    return { message: 'Erro ao fazer a requisição' };
   }
 };
 

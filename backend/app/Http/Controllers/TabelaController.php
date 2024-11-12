@@ -17,6 +17,7 @@ class TabelaController extends Controller
 
         foreach($clubes as $clube){
 
+            // Iniciará a tabela com o id dos times vinculados a ela
             Tabela::create([
                 "clube" => $clube['id'],
                 "pontos" => 0,
@@ -44,6 +45,7 @@ class TabelaController extends Controller
             return response()->json(['message' => 'Ainda não possui nenhum jogo na base de dados'], 404);
         }
 
+        // Retornará os dados da tabela de pontuações para a api
         return response()->json(['message' => 'Tabela buscada com sucesso', 'tabela' => $tabela], 200);
     }
 

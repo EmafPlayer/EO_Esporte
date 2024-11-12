@@ -1,4 +1,3 @@
-import { useLocation, useParams } from "react-router-dom";
 import { NavBar } from "../componentes/nav_bar";
 import buscarJogadores from "../apis/buscarJogadores";
 import buscarTreinadores from "../apis/buscarTreinadores";
@@ -15,12 +14,11 @@ export function Elenco( { id_clube }: TipoParametro ){
     const[jogadores, setJogadores] = useState([]);
     const[treinador, setTreinadores] = useState([])
 
+    // Fará a requisição dos dados de todo o elenco de cada time armazenado no banco de dados
     useEffect(() => {
         const fetchData = async () => {
             const dataJogadores = await buscarJogadores(id_clube);
             const dataTreinador = await buscarTreinadores(id_clube);
-            console.log("Dados retornados de buscarJogadores:", dataJogadores);
-            console.log("Dados retornados de buscarTreinadores:", dataTreinador);
 
             if (dataTreinador?.treinador && dataJogadores?.jogadores) {
                 setJogadores(dataJogadores.jogadores);
@@ -33,13 +31,11 @@ export function Elenco( { id_clube }: TipoParametro ){
         fetchData();
     }, []);
 
-    console.log(jogadores);
 
+    // Verifica se 'jogadores' e 'treinador' está carregado
     if (jogadores.length === 0 && treinador.length === 0) {
         return <p className="text-100px">Carregando...</p>;
     }
-
-    console.log(treinador[0].nome_clube);
 
     return(
         <view className="bg-slate-100">

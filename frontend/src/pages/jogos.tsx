@@ -23,6 +23,7 @@ export function Jogos () {
         return `${diaDaSemanaFormatado}`;
     };
 
+    // Avançará 5 rodadas de uma vez 
     function nextPage2 () {
         if(contador < 32)
             setContador(contador + 5);
@@ -30,6 +31,7 @@ export function Jogos () {
             setContador(37);
     }
 
+    // Voltará 5 rodadas de uma vez
     function lastPage2 () {
         if(contador > 4)
             setContador(contador - 5);
@@ -37,16 +39,19 @@ export function Jogos () {
             setContador(0);
     }
 
+    // Avançará 1 rodada de cada vez
     function nextPage () {
         if (contador < jogos.length - 1)
             setContador(contador + 1);
     }
 
+    // Voltará 1 rodada de cada vez
     function lastPage () {
         if (contador > 0)
             setContador(contador - 1);
     }
 
+    // Fará a requisição dos dados de todos os jogos armazenados no banco de dados
     useEffect(() => {
         const fetchData = async () => {
             const data = await buscarJogos();

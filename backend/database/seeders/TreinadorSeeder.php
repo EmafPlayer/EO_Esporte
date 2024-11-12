@@ -12,6 +12,7 @@ class TreinadorSeeder extends Seeder
      */
     public function run(): void
     {
+        // Armazenará os dados dos treinadores
         DB::table('treinadores')->insert([
             'nome' => 'Lucho Gonzalez',
             'pais_origem' => 'ARG',

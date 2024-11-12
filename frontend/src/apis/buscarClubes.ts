@@ -11,7 +11,7 @@ const buscarClubes = async () => {
     }
   } catch (error) {
     console.error(error);
-    return { message: 'Clubes Inválido.' };
+    return { message: 'Erro ao fazer a requisição' };
   }
 };
 
