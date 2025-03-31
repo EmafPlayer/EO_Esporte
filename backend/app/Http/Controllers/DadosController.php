@@ -12,7 +12,7 @@ class DadosController extends Controller
         // Faz a requisição da api que retornará os dados dos jogos de cada rodada
         for($i = 1; $i <= 38; $i++){
             
-            $endpoint = "https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-2024/rodada/$i/jogos/";
+            $endpoint = "https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-2025/rodada/$i/jogos/";
     
             //iniciar
             $cURL = curl_init();
