@@ -28,14 +28,14 @@ class JogoController extends Controller
 
                 Jogo::create([
                     "rodada" => $i+1,
-                    "status" => ($jogos[$i][$j]->jogo_ja_comecou == null ? false : $jogos[$i][$j]->jogo_ja_comecou),
+                    "status" => (($jogos[$i][$j]->transmissao && $jogos[$i][$j]->transmissao->broadcast->id === "ENCERRADA") ? true : false),
                     "data_partida" => $dataConvertida,
                     "hora_partida" => $jogos[$i][$j]->hora_realizacao,
                     "local" => ($jogos[$i][$j]->sede == null ? "Ainda não definido" : $jogos[$i][$j]->sede->nome_popular),
                     "clube_casa" => $clube_casa,
                     "clube_fora" => $clube_fora,
-                    "gols_clube_casa" => ($jogos[$i][$j]->placar_oficial_mandante == null ? 0 : $jogos[$i][$j]->placar_oficial_mandante),
-                    "gols_clube_fora" => ($jogos[$i][$j]->placar_oficial_visitante == null ? 0 : $jogos[$i][$j]->placar_oficial_visitante)
+                    "gols_clube_casa" => (($jogos[$i][$j]->transmissao && $jogos[$i][$j]->transmissao->broadcast->id === "ENCERRADA") ? $jogos[$i][$j]->placar_oficial_mandante : 0),
+                    "gols_clube_fora" => (($jogos[$i][$j]->transmissao && $jogos[$i][$j]->transmissao->broadcast->id === "ENCERRADA") ? $jogos[$i][$j]->placar_oficial_visitante : 0)
                 ]);
 
             }
@@ -78,7 +78,7 @@ class JogoController extends Controller
 
                 $status_jogo = Jogo::where('rodada', $i+1)->where('clube_casa', $clube_casa)->where('clube_fora', $clube_fora)->value('status');
 
-                if( ($jogos[$i][$j]->jogo_ja_comecou == true) && ($status_jogo == 0) ){ // É o caso do jogo ter acontecido, mas ainda não foi armazenado no banco de dados
+                if( (($jogos[$i][$j]->transmissao && $jogos[$i][$j]->transmissao->broadcast->id === "ENCERRADA")) && ($status_jogo == 0) ){ // É o caso do jogo ter acontecido, mas ainda não foi armazenado no banco de dados
                     Jogo::where('rodada', $i+1)->where('clube_casa', $clube_casa)->where('clube_fora', $clube_fora)->
                     update([
                         "status" => true,
